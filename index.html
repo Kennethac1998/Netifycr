@@ -503,21 +503,23 @@
             transform: scale(1.2);
         }
 
-        /* Contacto */
+        /* Contacto - Sección modificada sin formulario */
         .contact {
             background-color: rgba(0, 0, 0, 0.2);
         }
 
         .contact-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            display: flex;
+            justify-content: center;
             gap: 50px;
+            flex-wrap: wrap;
         }
 
         .contact-info {
             display: flex;
             flex-direction: column;
             gap: 30px;
+            max-width: 500px;
         }
 
         .contact-item {
@@ -540,61 +542,6 @@
 
         .contact-text a:hover {
             color: var(--secondary);
-        }
-
-        .contact-form {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 40px;
-            border-radius: 10px;
-            border: 1px solid rgba(212, 175, 55, 0.1);
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            color: var(--secondary);
-        }
-
-        .form-control {
-            width: 100%;
-            padding: 12px 15px;
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 5px;
-            color: var(--white);
-            font-family: 'Poppins', sans-serif;
-            transition: var(--transition);
-        }
-
-        .form-control:focus {
-            outline: none;
-            border-color: var(--primary);
-            background: rgba(255, 255, 255, 0.15);
-        }
-
-        textarea.form-control {
-            min-height: 150px;
-            resize: vertical;
-        }
-
-        .form-submit {
-            width: 100%;
-            padding: 15px;
-            background: var(--primary);
-            color: var(--bg-dark);
-            border: none;
-            border-radius: 5px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-
-        .form-submit:hover {
-            background: var(--secondary);
         }
 
         /* Footer */
@@ -815,10 +762,94 @@
             .testimonial-slide {
                 padding: 30px 20px;
             }
+        }
 
-            .contact-form {
-                padding: 30px 20px;
+        /* CORRECCIÓN PARA EL LABEL "POPULAR" */
+        .pricing-card.featured {
+            position: relative;
+            padding-top: 50px; /* Espacio extra para el label */
+            margin-top: 15px;  /* Ajuste de margen superior */
+            margin-bottom: 15px; /* Ajuste de margen inferior */
+        }
+
+        .featured-label {
+            position: absolute;
+            top: 10px; /* Posición ajustada (antes era -15px) */
+            right: 20px;
+            background: var(--primary);
+            color: var(--bg-dark);
+            padding: 8px 20px; /* Más padding para mejor visibilidad */
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            z-index: 3;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            white-space: nowrap; /* Evita que el texto se divida */
+        }
+
+        /* Asegurar que el hover no afecte el label */
+        .pricing-card.featured:hover {
+            transform: scale(1.05) translateY(-10px);
+        }
+
+        /* Ajustes para móviles */
+        @media (max-width: 768px) {
+            .pricing-card.featured {
+                padding-top: 45px;
             }
+            
+            .featured-label {
+                top: 8px;
+                padding: 6px 15px;
+                font-size: 0.8rem;
+            }
+        }
+
+        /* FOOTER MODIFICADO (sin redes sociales) */
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-about {
+            grid-column: 1 / -1;
+            text-align: center;
+        }
+
+        .social-links {
+            display: none; /* Ocultamos las redes sociales */
+        }
+
+        /* TEXTOS LEGALES MEJORADOS */
+        #terminos-condiciones, #politica-privacidad {
+            background: rgba(18, 18, 18, 0.9);
+            color: var(--primary);
+            padding: 30px;
+            margin: 20px 0;
+            border-left: 4px solid var(--secondary);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        #terminos-condiciones h2, #politica-privacidad h2 {
+            color: var(--primary);
+            text-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+            border-bottom: 1px solid var(--secondary);
+            padding-bottom: 10px;
+        }
+
+        #terminos-condiciones ul li, #politica-privacidad ul li {
+            margin-bottom: 10px;
+            position: relative;
+            padding-left: 15px;
+        }
+
+        #terminos-condiciones ul li::before, #politica-privacidad ul li::before {
+            content: "•";
+            color: var(--secondary);
+            position: absolute;
+            left: 0;
         }
     </style>
 </head>
@@ -949,7 +980,7 @@
                         <li>Responsivo (móvil/tablet)</li>
                         <li>Galería básica</li>
                     </ul>
-                    <a href="#contact" class="btn btn-outline" onclick="setContactMessage('Estoy interesado en el plan Básico')">Solicitar</a>
+                    <a href="#contact" class="btn btn-outline">Solicitar</a>
                 </div>
                 <div class="pricing-card featured">
                     <div class="featured-label">Popular</div>
@@ -963,7 +994,7 @@
                         <li>Integración con redes</li>
                         <li>Formulario de contacto</li>
                     </ul>
-                    <a href="#contact" class="btn" onclick="setContactMessage('Estoy interesado en el plan Profesional')">Solicitar</a>
+                    <a href="#contact" class="btn">Solicitar</a>
                 </div>
                 <div class="pricing-card">
                     <h3 class="pricing-name">Mantenimiento</h3>
@@ -975,7 +1006,7 @@
                         <li>Actualizaciones de contenido (hasta 2/mes)</li>
                         <li>Asesoría en mejoras</li>
                     </ul>
-                    <a href="#contact" class="btn btn-outline" onclick="setContactMessage('Estoy interesado en el servicio de Mantenimiento')">Solicitar</a>
+                    <a href="#contact" class="btn btn-outline">Solicitar</a>
                 </div>
             </div>
         </div>
@@ -1025,7 +1056,7 @@
         </div>
     </section>
 
-    <!-- Contacto -->
+    <!-- Contacto - Sección modificada sin formulario -->
     <section class="contact" id="contact">
         <div class="container">
             <h2>Contáctanos</h2>
@@ -1069,37 +1100,6 @@
                         </div>
                     </div>
                 </div>
-                <div class="contact-form">
-                    <form id="contactForm">
-                        <div class="form-group">
-                            <label for="name">Nombre completo</label>
-                            <input type="text" id="name" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Correo electrónico</label>
-                            <input type="email" id="email" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="phone">Teléfono (opcional)</label>
-                            <input type="tel" id="phone" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <label for="service">Servicio de interés</label>
-                            <select id="service" class="form-control">
-                                <option value="">Seleccione una opción</option>
-                                <option value="Diseño Web Básico">Diseño Web Básico</option>
-                                <option value="Diseño Web Profesional">Diseño Web Profesional</option>
-                                <option value="Mantenimiento Web">Mantenimiento Web</option>
-                                <option value="Otro">Otro</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="message">Mensaje</label>
-                            <textarea id="message" class="form-control" required></textarea>
-                        </div>
-                        <button type="submit" class="form-submit">Enviar Mensaje</button>
-                    </form>
-                </div>
             </div>
         </div>
     </section>
@@ -1112,19 +1112,13 @@
                     <a href="#" class="footer-logo">
                         <span>Netify</span>
                     </a>
-                    <p>Diseño web profesional para pequeños negocios en Costa Rica. Creamos sitios web rápidos, funcionales y a la medida de tus necesidades.</p>
-                    <div class="social-links">
-                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-whatsapp"></i></a>
-                    </div>
+                    <p>Diseño web profesional para pequeños negocios en Costa Rica.</p>
                 </div>
                 <div class="footer-links">
                     <h3>Servicios</h3>
                     <ul>
                         <li><a href="#services">Diseño Web Personalizado</a></li>
                         <li><a href="#pricing">Planes de Desarrollo</a></li>
-                        <li><a href="#pricing">Mantenimiento Web</a></li>
                         <li><a href="#contact">Soporte Técnico</a></li>
                     </ul>
                 </div>
@@ -1134,15 +1128,13 @@
                         <li><a href="#home">Inicio</a></li>
                         <li><a href="#about">Nosotros</a></li>
                         <li><a href="#services">Servicios</a></li>
-                        <li><a href="#pricing">Precios</a></li>
-                        <li><a href="#contact">Contacto</a></li>
                     </ul>
                 </div>
                 <div class="footer-links">
                     <h3>Legal</h3>
                     <ul>
-                        <li><a href="#">Términos y Condiciones</a></li>
-                        <li><a href="#">Política de Privacidad</a></li>
+                        <li><a href="#terminos-condiciones">Términos y Condiciones</a></li>
+                        <li><a href="#politica-privacidad">Política de Privacidad</a></li>
                     </ul>
                 </div>
             </div>
@@ -1150,8 +1142,28 @@
                 <p>&copy; 2023 Netify. Todos los derechos reservados.</p>
             </div>
         </div>
-        
     </footer>
+
+    <!-- Textos legales -->
+    <div id="terminos-condiciones" style="display: none;">
+        <h2>Términos y Condiciones</h2>
+        <p><strong>Última actualización:</strong> 17 de junio de 2025</p>
+        <ul>
+            <li>Los diseños incluyen hasta 3 revisiones gratuitas.</li>
+            <li>El pago inicial (50%) no es reembolsable.</li>
+            <li>Nos reservamos el derecho de rechazar proyectos con contenido inapropiado.</li>
+        </ul>
+    </div>
+
+    <div id="politica-privacidad" style="display: none;">
+        <h2>Política de Privacidad</h2>
+        <p>En Netify protegemos tus datos:</p>
+        <ul>
+            <li>La información del formulario solo se usa para contactarte.</li>
+            <li>No vendemos ni compartimos tus datos con terceros.</li>
+            <li>Usamos cookies técnicas para el funcionamiento del sitio.</li>
+        </ul>
+    </div>
 
     <!-- Botón de WhatsApp -->
     <a href="https://wa.me/50670183800" class="whatsapp-btn" target="_blank">
@@ -1213,290 +1225,11 @@
         
         setInterval(rotateTestimonials, 5000);
 
-        // Form submission
-        const contactForm = document.getElementById('contactForm');
-        contactForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            
-            // Aquí iría la lógica para enviar el formulario
-            alert('Gracias por tu mensaje. Nos pondremos en contacto contigo pronto.');
-            contactForm.reset();
-        });
-
         // Set contact message when clicking pricing buttons
         function setContactMessage(message) {
-            document.getElementById('message').value = message;
+            // Esta función se ha dejado por compatibilidad pero no hace nada
+            // ya que el formulario fue eliminado
         }
     </script>
-</body>
-</html>
-<style>
-    /* CORRECCIÓN PARA EL LABEL "POPULAR" */
-    .pricing-card.featured {
-        position: relative;
-        padding-top: 50px; /* Espacio extra para el label */
-        margin-top: 15px;  /* Ajuste de margen superior */
-        margin-bottom: 15px; /* Ajuste de margen inferior */
-    }
-
-    .featured-label {
-        position: absolute;
-        top: 10px; /* Posición ajustada (antes era -15px) */
-        right: 20px;
-        background: var(--primary);
-        color: var(--bg-dark);
-        padding: 8px 20px; /* Más padding para mejor visibilidad */
-        border-radius: 20px;
-        font-size: 0.9rem;
-        font-weight: 600;
-        z-index: 3;
-        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-        white-space: nowrap; /* Evita que el texto se divida */
-    }
-
-    /* Asegurar que el hover no afecte el label */
-    .pricing-card.featured:hover {
-        transform: scale(1.05) translateY(-10px);
-    }
-
-    /* Ajustes para móviles */
-    @media (max-width: 768px) {
-        .pricing-card.featured {
-            padding-top: 45px;
-        }
-        
-        .featured-label {
-            top: 8px;
-            padding: 6px 15px;
-            font-size: 0.8rem;
-        }
-    }
-    /* CORRECCIONES PARA EL FORMULARIO DE CONTACTO */
-.form-group select {
-    appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23d4af37'%3e%3cpath d='M7 10l5 5 5-5z'/%3e%3c/svg%3e");
-    background-repeat: no-repeat;
-    background-position: right 15px center;
-    background-size: 12px;
-    padding-right: 35px;
-}
-
-.form-group select option {
-    color: #000;
-    background: #fff;
-}
-
-.form-submit {
-    background: var(--primary);
-    color: var(--bg-dark);
-    border: none;
-    border-radius: 5px;
-    padding: 15px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: var(--transition);
-    width: 100%;
-    margin-top: 10px;
-}
-
-.form-submit:hover {
-    background: var(--secondary);
-    transform: translateY(-3px);
-    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-}
-
-/* Mejoras para el dropdown */
-select.form-control {
-    color: var(--white) !important;
-}
-
-select.form-control:focus {
-    color: var(--white);
-}
-
-select.form-control option:first-child {
-    color: var(--gray-medium);
-}
-
-/* Ajustes para móviles */
-@media (max-width: 576px) {
-    .form-submit {
-        padding: 12px;
-    }
-    
-    .form-group select {
-        background-position: right 10px center;
-    }
-}
-</style>
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Netify - Diseño Web para Pequeños Negocios</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <style>
-        :root {
-            --bg-dark: #121212;
-            --primary: #d4af37; /* Dorado */
-            --secondary: #9caf88; /* Verde musgo */
-            --white: #ffffff;
-            --gray-light: #f5f5f5;
-            --gray-medium: #e0e0e0;
-            --transition: all 0.3s ease;
-        }
-
-        /* (Todos tus estilos anteriores se mantienen igual hasta .footer-content) */
-
-        /* CORRECCIÓN PARA EL DROPDOWN "SERVICIO DE INTERÉS" */
-        .form-group select {
-            appearance: none;
-            -webkit-appearance: none;
-            -moz-appearance: none;
-            background: rgba(255, 255, 255, 0.1) url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23d4af37'%3e%3cpath d='M7 10l5 5 5-5z'/%3e%3c/svg%3e") no-repeat;
-            background-position: right 15px center;
-            background-size: 12px;
-            padding-right: 35px;
-            color: var(--primary) !important;
-            text-shadow: 0 0 5px rgba(156, 175, 136, 0.3);
-            border: 1px solid rgba(212, 175, 55, 0.3);
-        }
-
-        .form-group select option {
-            color: var(--primary);
-            background: var(--bg-dark);
-            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
-        }
-
-        .form-group select:focus {
-            border-color: var(--primary);
-            box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.2);
-        }
-
-        /* FOOTER MODIFICADO (sin redes sociales) */
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 40px;
-            margin-bottom: 40px;
-        }
-
-        .footer-about {
-            grid-column: 1 / -1;
-            text-align: center;
-        }
-
-        .social-links {
-            display: none; /* Ocultamos las redes sociales */
-        }
-
-        /* TEXTOS LEGALES MEJORADOS */
-        #terminos-condiciones, #politica-privacidad {
-            background: rgba(18, 18, 18, 0.9);
-            color: var(--primary);
-            padding: 30px;
-            margin: 20px 0;
-            border-left: 4px solid var(--secondary);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-        }
-
-        #terminos-condiciones h2, #politica-privacidad h2 {
-            color: var(--primary);
-            text-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
-            border-bottom: 1px solid var(--secondary);
-            padding-bottom: 10px;
-        }
-
-        #terminos-condiciones ul li, #politica-privacidad ul li {
-            margin-bottom: 10px;
-            position: relative;
-            padding-left: 15px;
-        }
-
-        #terminos-condiciones ul li::before, #politica-privacidad ul li::before {
-            content: "•";
-            color: var(--secondary);
-            position: absolute;
-            left: 0;
-        }
-
-        /* (El resto de tus estilos se mantienen igual) */
-    </style>
-</head>
-<body>
-    <!-- (Todo el contenido de tu página se mantiene igual hasta el footer) -->
-
-    <!-- Footer modificado -->
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-about">
-                    <a href="#" class="footer-logo">
-                        <span>Netify</span>
-                    </a>
-                    <p>Diseño web profesional para pequeños negocios en Costa Rica.</p>
-                    <!-- Eliminamos los íconos de redes sociales -->
-                </div>
-                <div class="footer-links">
-                    <h3>Servicios</h3>
-                    <ul>
-                        <li><a href="#services">Diseño Web Personalizado</a></li>
-                        <li><a href="#pricing">Planes de Desarrollo</a></li>
-                        <li><a href="#contact">Soporte Técnico</a></li>
-                    </ul>
-                </div>
-                <div class="footer-links">
-                    <h3>Enlaces Rápidos</h3>
-                    <ul>
-                        <li><a href="#home">Inicio</a></li>
-                        <li><a href="#about">Nosotros</a></li>
-                        <li><a href="#services">Servicios</a></li>
-                    </ul>
-                </div>
-                <div class="footer-links">
-                    <h3>Legal</h3>
-                    <ul>
-                        <li><a href="#terminos-condiciones">Términos y Condiciones</a></li>
-                        <li><a href="#politica-privacidad">Política de Privacidad</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2023 Netify. Todos los derechos reservados.</p>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Textos legales -->
-    <div id="terminos-condiciones" style="display: none;">
-        <h2>Términos y Condiciones</h2>
-        <p><strong>Última actualización:</strong> 17 de junio de 2025</p>
-        <ul>
-            <li>Los diseños incluyen hasta 3 revisiones gratuitas.</li>
-            <li>El pago inicial (50%) no es reembolsable.</li>
-            <li>Nos reservamos el derecho de rechazar proyectos con contenido inapropiado.</li>
-        </ul>
-    </div>
-
-    <div id="politica-privacidad" style="display: none;">
-        <h2>Política de Privacidad</h2>
-        <p>En Netify protegemos tus datos:</p>
-        <ul>
-            <li>La información del formulario solo se usa para contactarte.</li>
-            <li>No vendemos ni compartimos tus datos con terceros.</li>
-            <li>Usamos cookies técnicas para el funcionamiento del sitio.</li>
-        </ul>
-    </div>
-
-    <!-- Botón de WhatsApp -->
-    <a href="https://wa.me/50670183800" class="whatsapp-btn" target="_blank">
-        <i class="fab fa-whatsapp"></i>
-    </a>
-
-    <!-- (Tu JavaScript se mantiene igual) -->
 </body>
 </html>
