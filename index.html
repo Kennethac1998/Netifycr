@@ -87,7 +87,7 @@
     </script>
 
     <!-- Fuentes y estilos (esto se mantiene igual) -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Fira+Mono:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
     /* Todo tu CSS existente se mantiene igual aquí */
@@ -1195,8 +1195,8 @@
                 <h1>Netify: Diseño Web en Costa Rica para Pequeños Negocios</h1>
                 <p class="text-moss">En Netify ofrecemos diseño web profesional en Costa Rica, ideal para pequeños negocios que quieren crecer en línea.</p>
                 <div class="hero-btns">
-                    <a href="#contact" class="btn">¡Contáctanos!</a>
-                    <a href="#services" class="btn">Ver Servicios</a>
+                    <a href="#contact" class="btn">Contáctanos Ahora</a>
+                    <a href="#services" class="btn">Descubre Nuestros Servicios</a>
                 </div>
             </div>
         </div>
@@ -1783,5 +1783,79 @@
             });
         });
     </script>
+<style>
+#welcome-overlay {
+  position: fixed; z-index: 9999; inset: 0;
+  background: rgba(10,10,10,0.88);
+  backdrop-filter: blur(8px);
+  display: flex; align-items: center; justify-content: center;
+  transition: opacity 0.7s;
+}
+#welcome-overlay.hide { opacity: 0; pointer-events: none; }
+.welcome-content {
+  text-align: center;
+}
+.code-welcome {
+  font-family: 'Fira Mono', 'Consolas', monospace;
+  font-size: 4.4rem;
+  font-weight: bold;
+  color: #fff;
+  background: none;
+  border: none;
+  margin: 0 auto;
+  padding: 0;
+  letter-spacing: 0.03em;
+  line-height: 1.1;
+  text-align: center;
+  opacity: 1;
+  max-width: 90vw;
+  word-break: break-all;
+  transition: color 0.7s cubic-bezier(.4,0,.2,1), text-shadow 0.7s, background 0.7s;
+  position: relative;
+  overflow: visible;
+}
+
+@media (min-width:601px) and (max-width:1024px){
+  .code-welcome { font-size: 3.2rem; }
+}
+@media (max-width:600px){
+  .code-welcome { font-size: 2.2rem; }
+}
+@media (max-width:400px){
+  .code-welcome { font-size: 1.2rem; }
+}
+
+#welcome-overlay {
+  position: fixed; z-index: 9999; inset: 0;
+  background: rgba(10,10,10,0.88);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  display: flex; align-items: center; justify-content: center;
+  transition: opacity 0.7s;
+}
+#welcome-overlay.no-blur {
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  background: rgba(10,10,10,0.96);
+}
+
+.code-welcome.shine {
+  color: #d4af37;
+  background: linear-gradient(90deg, #fff7c1 0%, #d4af37 40%, #fff7c1 60%, #d4af37 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shine-gold 1.8s linear 1;
+  text-shadow: 0 0 20px rgba(212,175,55,0.6), 0 0 40px rgba(212,175,55,0.2);
+}
+@keyframes shine-gold {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+@media (max-width:600px){
+  .code-welcome { font-size: 2.2rem; }
+}
+</style>
+<script src="welcome-overlay.js"></script>
 </body>
 </html>
