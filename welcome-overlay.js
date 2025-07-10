@@ -142,3 +142,42 @@ window.addEventListener('DOMContentLoaded', function () {
             let startChar = startArr[i] || ' ';
             let idx = chars.indexOf(startChar);
             if (idx === -1) idx = 0;
+            charIndices.push(idx);
+        }
+        function morphEffect(ts) {
+            if (!morphStart) morphStart = ts;
+            let progress = (ts - morphStart) / morphTime;
+            if (progress > 1) progress = 1;
+            let display = '';
+            for (let i = 0; i < finalText.length; i++) {
+                let targetChar = targetArr[i];
+                let startIdx = charIndices[i];
+                let targetIdx = chars.indexOf(targetChar);
+                if (targetIdx === -1) targetIdx = 0;
+                // Calculate how far this char should be
+                let steps = targetIdx - startIdx;
+                if (steps < 0) steps += chars.length;
+                let curStep = Math.floor(steps * progress);
+                let curIdx = (startIdx + curStep) % chars.length;
+                let morphChar = chars[curIdx];
+                if (progress >= 1 || curStep >= steps) {
+                    display += targetChar;
+                } else {
+                    display += morphChar;
+                }
+            }
+            codeWelcome.textContent = display;
+            if (progress < 1) {
+                requestAnimationFrame(morphEffect);
+            } else {
+                codeWelcome.textContent = finalText;
+                codeWelcome.classList.add('shine');
+                setTimeout(() => {
+                    overlay.classList.add('hide');
+                    setTimeout(() => overlay.remove(), 700);
+                }, 2000);
+            }
+        }
+        requestAnimationFrame(morphEffect);
+    }, 1500);
+});
