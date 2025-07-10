@@ -174,20 +174,14 @@ window.addEventListener('DOMContentLoaded', function () {
                 if (steps < 0) steps += chars.length;
                 let curStep = Math.floor(steps * progress);
                 let curIdx = (startIdx + curStep) % chars.length;
-                let morphChar = chars[curIdx];
-                if (progress >= 1 || curStep >= steps) {
-                    display += targetChar;
-                } else {
-                    display += morphChar;
-                }
+                display += chars[curIdx];
             }
             codeWelcome.textContent = display;
+            codeWelcome.classList.add('gold');
             if (progress < 1) {
                 requestAnimationFrame(morphEffect);
             } else {
                 // El texto final aparece dorado, y luego el brillo
-                codeWelcome.textContent = finalText;
-                codeWelcome.classList.add('gold');
                 setTimeout(() => {
                     codeWelcome.classList.add('shine');
                     setTimeout(() => {
