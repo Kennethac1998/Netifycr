@@ -55,9 +55,12 @@ window.addEventListener('DOMContentLoaded', function () {
   white-space: normal !important;
 }
 
-.code-welcome.shine, .code-welcome.shine * {
+.code-welcome.gold, .code-welcome.gold * {
   color: var(--primary) !important;
-  /* Ajusta el dimmer cambiando el valor de opacidad (0.3 = 30% de brillo, es 70% menos) */
+}
+
+.code-welcome.shine, .code-welcome.shine * {
+  /* SOLO el brillo, NO color */
   text-shadow:
     0 0 4px rgba(212,175,55,0.3),
     0 0 8px rgba(255,215,0,0.3),
@@ -71,6 +74,7 @@ window.addEventListener('DOMContentLoaded', function () {
   -webkit-text-stroke: 0 !important;
   transition: none !important;
 }
+
 
 
 
@@ -181,15 +185,16 @@ window.addEventListener('DOMContentLoaded', function () {
             if (progress < 1) {
                 requestAnimationFrame(morphEffect);
             } else {
-                // Asegura que el texto final se muestre SUAVEMENTE antes del brillo
+                // El texto final aparece dorado, y luego el brillo
                 codeWelcome.textContent = finalText;
+                codeWelcome.classList.add('gold');
                 setTimeout(() => {
                     codeWelcome.classList.add('shine');
                     setTimeout(() => {
                         overlay.classList.add('hide');
                         setTimeout(() => overlay.remove(), 700);
                     }, 2000);
-                }, 30); // Pequeño delay para mostrar el texto antes del brillo
+                }, 30); // Pequeño delay para mostrar el texto dorado antes del brillo
             }
         }
         requestAnimationFrame(morphEffect);
