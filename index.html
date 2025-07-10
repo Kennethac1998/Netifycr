@@ -1805,25 +1805,29 @@
 
 .code-welcome {
   font-family: 'Fira Mono', 'Consolas', monospace;
-  font-size: min(max(0.55rem, 2.8vw), 2.2rem);
+  font-size: min(max(0.45rem, 2vw), 1.7rem);
   font-weight: bold;
   color: #fff;
   background: none;
   border: none;
   width: 100%;
   margin: 0;
-  padding: 0;
+  padding-left: 1vw;
+  padding-right: 1vw;
+  padding-top: 0;
+  padding-bottom: 0;
   letter-spacing: 0;
   line-height: 1.1;
   text-align: center;
   opacity: 1;
   max-width: none;
   white-space: nowrap;
-  overflow: hidden;
-  box-sizing: border-box;
+  overflow: clip;
+  box-sizing: content-box;
   transition: color 0.7s cubic-bezier(.4,0,.2,1), text-shadow 0.7s, background 0.7s;
   position: relative;
 }
+
 @media (max-width: 600px) {
   .code-welcome { font-family: 'Consolas', monospace; }
 }
