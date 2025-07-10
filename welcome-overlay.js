@@ -76,6 +76,14 @@ window.addEventListener('DOMContentLoaded', function () {
     padding-right: 1vw;
     max-width: 100vw;
   }
+  .code-welcome.shine, .code-welcome.shine * {
+    font-size: clamp(1.1rem, 7vw, 2.1rem) !important;
+    padding-left: 2vw !important;
+    padding-right: 2vw !important;
+    letter-spacing: 0.01em !important;
+    white-space: normal !important;
+    max-width: 95vw !important;
+  }
 }
 
 @media (max-width: 600px) {
