@@ -178,12 +178,15 @@ window.addEventListener('DOMContentLoaded', function () {
             if (progress < 1) {
                 requestAnimationFrame(morphEffect);
             } else {
+                // Asegura que el texto final se muestre SUAVEMENTE antes del brillo
                 codeWelcome.textContent = finalText;
-                codeWelcome.classList.add('shine');
                 setTimeout(() => {
-                    overlay.classList.add('hide');
-                    setTimeout(() => overlay.remove(), 700);
-                }, 2000);
+                    codeWelcome.classList.add('shine');
+                    setTimeout(() => {
+                        overlay.classList.add('hide');
+                        setTimeout(() => overlay.remove(), 700);
+                    }, 2000);
+                }, 30); // Pequeño delay para mostrar el texto antes del brillo
             }
         }
         requestAnimationFrame(morphEffect);
