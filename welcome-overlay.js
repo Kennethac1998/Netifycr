@@ -45,11 +45,18 @@ window.addEventListener('DOMContentLoaded', function () {
   position: relative;
 }
 
-.code-welcome.shine, .code-welcome.shine * {
-  color: var(--primary) !important;
+.code-welcome {
   font-size: 3.5rem !important;
   font-weight: 900 !important;
   letter-spacing: 0.05em !important;
+  padding-left: 2vw !important;
+  padding-right: 2vw !important;
+  max-width: 95vw !important;
+  white-space: normal !important;
+}
+
+.code-welcome.shine, .code-welcome.shine * {
+  color: var(--primary) !important;
   /* Ajusta el dimmer cambiando el valor de opacidad (0.3 = 30% de brillo, es 70% menos) */
   text-shadow:
     0 0 4px rgba(212,175,55,0.3),
@@ -67,24 +74,20 @@ window.addEventListener('DOMContentLoaded', function () {
 
 
 
+
 @media (max-width: 600px) {
   .code-welcome {
     font-family: 'Consolas', monospace !important;
-    font-size: clamp(0.85rem, 6vw, 1.6rem) !important;
-    width: 100vw;
-    padding-left: 1vw;
-    padding-right: 1vw;
-    max-width: 100vw;
-  }
-  .code-welcome.shine, .code-welcome.shine * {
     font-size: clamp(1.1rem, 7vw, 2.1rem) !important;
     padding-left: 2vw !important;
     padding-right: 2vw !important;
     letter-spacing: 0.01em !important;
     white-space: normal !important;
     max-width: 95vw !important;
+    width: 100vw;
   }
 }
+
 
 @media (max-width: 600px) {
   .code-welcome {
