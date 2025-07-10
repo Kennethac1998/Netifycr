@@ -1794,6 +1794,10 @@
 #welcome-overlay.hide { opacity: 0; pointer-events: none; }
 .welcome-content {
   text-align: center;
+  padding: 2vw 4vw;
+  max-height: 100vh;
+  overflow: auto;
+  box-sizing: border-box;
 }
 .code-welcome {
   font-family: 'Fira Mono', 'Consolas', monospace;
@@ -1810,6 +1814,8 @@
   opacity: 1;
   max-width: 90vw;
   word-break: break-all;
+  white-space: pre-wrap;
+  box-sizing: border-box;
   transition: color 0.7s cubic-bezier(.4,0,.2,1), text-shadow 0.7s, background 0.7s;
   position: relative;
   overflow: visible;
