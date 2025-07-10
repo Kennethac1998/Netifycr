@@ -1,5 +1,46 @@
 // Overlay: single line of real code, seamless morph to welcome
 window.addEventListener('DOMContentLoaded', function () {
+    // Inject overlay-specific CSS for perfect mobile fit
+    const style = document.createElement('style');
+    style.textContent = `
+#welcome-overlay {
+  position: fixed; z-index: 9999; inset: 0;
+  background: rgba(10,10,10,0.88);
+  backdrop-filter: blur(8px);
+  display: flex; align-items: center; justify-content: center;
+  transition: opacity 0.7s;
+}
+#welcome-overlay.hide { opacity: 0; pointer-events: none; }
+.welcome-content {
+  text-align: center;
+  padding: 2vw 0;
+  max-height: 100vh;
+  overflow: auto;
+  box-sizing: border-box;
+}
+.code-welcome {
+  font-family: 'Consolas', monospace !important;
+  font-size: min(max(0.38rem, 1.8vw), 1.3rem) !important;
+  font-weight: bold;
+  color: #fff;
+  background: none;
+  border: none;
+  width: 100vw;
+  margin: 0;
+  padding-left: 2vw; padding-right: 2vw; padding-top: 0; padding-bottom: 0;
+  letter-spacing: 0;
+  line-height: 1.1;
+  text-align: center;
+  opacity: 1;
+  max-width: none;
+  white-space: nowrap;
+  overflow: clip;
+  box-sizing: content-box;
+  transition: color 0.7s cubic-bezier(.4,0,.2,1), text-shadow 0.7s, background 0.7s;
+  position: relative;
+}
+`;
+    document.head.appendChild(style);
     const overlay = document.createElement('div');
     overlay.id = 'welcome-overlay';
     overlay.innerHTML = `
