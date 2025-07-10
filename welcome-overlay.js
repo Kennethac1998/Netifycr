@@ -1,0 +1,91 @@
+// Overlay: single line of real code, seamless morph to welcome
+window.addEventListener('DOMContentLoaded', function () {
+    const overlay = document.createElement('div');
+    overlay.id = 'welcome-overlay';
+    overlay.innerHTML = `
+        <div class="welcome-content">
+            <pre class="code-welcome"></pre>
+        </div>
+    `;
+    overlay.setAttribute('aria-hidden', 'true');
+    // Fallback para navegadores sin blur
+    function blurSupported() {
+        const el = document.createElement('div');
+        el.style.backdropFilter = 'blur(2px)';
+        return el.style.backdropFilter !== '';
+    }
+    if (!blurSupported()) {
+        overlay.classList.add('no-blur');
+    }
+    // Permitir saltar animación con click/tap
+    overlay.addEventListener('click', skipOverlay);
+    overlay.addEventListener('touchstart', skipOverlay);
+    let overlayRemoved = false;
+    function skipOverlay() {
+        if (overlayRemoved) return;
+        overlayRemoved = true;
+        overlay.classList.add('hide');
+        setTimeout(() => overlay.remove(), 700);
+    }
+
+    document.body.appendChild(overlay);
+
+    const codeWelcome = overlay.querySelector('.code-welcome');
+    const finalText = 'Bienvenido a Netifycr';
+    const codeLine = '<meta charset="utf-8"> ';
+
+    // Step 1: Show code line for 1.5s
+    codeWelcome.textContent = codeLine;
+    codeWelcome.style.opacity = 1;
+    setTimeout(() => {
+        let morphTime = 1500; // ms
+        let morphStart = null;
+        const chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789<>/=" ';
+        // Get the starting string (codeLine)
+        let startArr = codeLine.split('');
+        let targetArr = finalText.split('');
+        let charIndices = [];
+        // For each char, find its index in chars
+        for (let i = 0; i < finalText.length; i++) {
+            let startChar = startArr[i] || ' ';
+            let idx = chars.indexOf(startChar);
+            if (idx === -1) idx = 0;
+            charIndices.push(idx);
+        }
+        function morphEffect(ts) {
+            if (!morphStart) morphStart = ts;
+            let progress = (ts - morphStart) / morphTime;
+            if (progress > 1) progress = 1;
+            let display = '';
+            for (let i = 0; i < finalText.length; i++) {
+                let targetChar = targetArr[i];
+                let startIdx = charIndices[i];
+                let targetIdx = chars.indexOf(targetChar);
+                if (targetIdx === -1) targetIdx = 0;
+                // Calculate how far this char should be
+                let steps = targetIdx - startIdx;
+                if (steps < 0) steps += chars.length;
+                let curStep = Math.floor(steps * progress);
+                let curIdx = (startIdx + curStep) % chars.length;
+                let morphChar = chars[curIdx];
+                if (progress >= 1 || curStep >= steps) {
+                    display += targetChar;
+                } else {
+                    display += morphChar;
+                }
+            }
+            codeWelcome.textContent = display;
+            if (progress < 1) {
+                requestAnimationFrame(morphEffect);
+            } else {
+                codeWelcome.textContent = finalText;
+                codeWelcome.classList.add('shine');
+                setTimeout(() => {
+                    overlay.classList.add('hide');
+                    setTimeout(() => overlay.remove(), 700);
+                }, 2000);
+            }
+        }
+        requestAnimationFrame(morphEffect);
+    }, 1500);
+});
