@@ -109,7 +109,7 @@
 
     body {
         font-family: 'Poppins', sans-serif;
-        background-color: var(--bg-dark);
+        background: var(--bg-dark);
         color: var(--white);
         line-height: 1.6;
         overflow-x: hidden;
@@ -219,28 +219,36 @@
     }
 
     .btn {
-    display: inline-block;
-    padding: 12px 30px;
-    background: var(--primary);
-    color: var(--bg-dark) !important;
-    border-radius: 30px;
-    font-weight: 500;
-    transition: var(--transition);
-    border: none;
-    cursor: pointer;
-    font-size: 1rem;
-    text-align: center;
-}
-
-.btn:visited, .btn:active {
-    color: var(--bg-dark) !important;
-}
-
+        display: inline-block;
+        padding: 12px 30px;
+        background: var(--primary);
+        color: var(--bg-dark) !important;
+        border-radius: 30px;
+        font-weight: 500;
+        transition: var(--transition);
+        border: none;
+        cursor: pointer;
+        font-size: 1rem;
+        text-align: center;
+    }
 
     .btn:hover {
         background: var(--secondary);
         transform: translateY(-3px);
         box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .btn:visited, .btn:active {
+        color: var(--bg-dark) !important;
+    }
+
+    .btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .btn:hover:before {
+        opacity: 1;
     }
 
     .btn-outline {
@@ -512,18 +520,29 @@
         margin-top: 50px;
     }
         
-    .portfolio-item {
-    background: rgba(255, 255, 255, 0.05); /* Igual que .pricing-card */
-    border-radius: 10px;
-    overflow: hidden;
-    transition: var(--transition);
-    border: 1px solid rgba(212, 175, 55, 0.3);
+    /* Estilos para las tarjetas de portafolio */
+.portfolio-item {
+    background: rgba(255, 255, 255, 0.05) !important;
+    border-radius: 10px !important;
+    overflow: hidden !important;
+    transition: all 0.3s ease !important;
+    border: 1px solid rgba(212, 175, 55, 0.3) !important;
+    transform: scale(1) !important;
+    position: relative !important;
+    z-index: 1 !important;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1) !important;
+    will-change: transform, box-shadow !important;
+    backface-visibility: hidden !important;
+    -webkit-transform: translateZ(0) !important;
+    transform: translateZ(0) !important;
 }
 
 .portfolio-item:hover {
-    transform: translateY(-10px);
-    border-color: var(--primary);
-    box-shadow: 0 10px 30px rgba(212, 175, 55, 0.2);
+    transform: scale(1.05) translateY(-10px) !important;
+    -webkit-transform: scale(1.05) translateY(-10px) !important;
+    border-color: var(--primary) !important;
+    box-shadow: 0 15px 30px rgba(212, 175, 55, 0.4) !important;
+    z-index: 2 !important;
 }
 
 .portfolio-item {
@@ -581,6 +600,15 @@
     color: var(--primary);
 }
 
+/* Estilos para los títulos de las tarjetas de portafolio */
+.portfolio-item .card-title {
+    display: block;
+    text-align: center;
+    margin: 15px 0;
+    font-size: 1.5rem;
+    color: var(--primary);
+    padding: 0 15px;
+}
 
 .portfolio-item .btn {
         display: block;
@@ -589,17 +617,17 @@
         text-align: center;
         background-color: var(--primary);
         color: white;
-        border-radius: 5px;
-        padding: 10px 0;
+        border-radius: 30px;
+        padding: 12px 0;
         font-weight: bold;
-        transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        transition: all 0.3s ease;
         cursor: pointer;
         border: none;
         outline: none;
-        font-size: 1rem;
+        font-size: 0.9rem;
         text-transform: uppercase;
         letter-spacing: 1px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
     }
         
     .portfolio-item .btn:hover {
